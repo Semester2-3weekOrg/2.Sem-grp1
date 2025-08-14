@@ -1,0 +1,33 @@
+﻿<Window x:Class="MemoryGameByJohnny.HighscoresWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="High Scores" Height="400" Width="420"
+        WindowStartupLocation="CenterOwner">
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Top 10" FontSize="18" FontWeight="Bold" Margin="0,0,0,8"/>
+
+        <ListView Grid.Row="1" ItemsSource="{Binding HighScores}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Player" Width="140" DisplayMemberBinding="{Binding PlayerName}"/>
+                    <GridViewColumn Header="Moves" Width="70" DisplayMemberBinding="{Binding Moves}"/>
+                    <GridViewColumn Header="Time" Width="90">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <!-- GameTime er TimeSpan — formatér hh:mm:ss -->
+                                <TextBlock Text="{Binding GameTime, StringFormat={}{0:hh\\:mm\\:ss}}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Completed (UTC)" Width="140"
+                                    DisplayMemberBinding="{Binding CompletedAt}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
