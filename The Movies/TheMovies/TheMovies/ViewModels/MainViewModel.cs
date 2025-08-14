@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using TheMovies.Commands;
 using TheMovies.Models;
@@ -20,7 +15,7 @@ namespace TheMovies.ViewModels
     /// to  support data binding and notify the UI of property changes.</remarks>
     public class MainViewModel : INotifyPropertyChanged
     {
-        // Lister til visning
+        // Lister til visning.
         public ObservableCollection<Movie> Movies { get; set; }
         public ObservableCollection<Genre> Genres { get; set; }
 
