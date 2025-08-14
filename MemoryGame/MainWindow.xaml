@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MemoryGame"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+       Title="MainWindow" Height="720" Width="1280">
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Width="1280" Height="704">
+        <Frame x:Name="MainFrame"
+               NavigationUIVisibility="Hidden" Margin="10,10,10,10" />
 
     </Grid>
 </Window>

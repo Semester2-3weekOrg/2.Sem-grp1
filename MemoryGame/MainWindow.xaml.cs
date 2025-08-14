@@ -8,6 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MemoryGame.View;
+using System.Windows.Controls;
 
 namespace MemoryGame
 {
@@ -19,6 +21,9 @@ namespace MemoryGame
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Navigate(new MainPage(MainFrame));
         }
+
+        public Frame AppFrame => MainFrame;
     }
 }
