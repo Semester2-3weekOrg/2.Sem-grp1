@@ -1,10 +1,11 @@
 # The movies
 The Movies er en biografkæde beliggende i det vestlige Jylland med fokus på dokumentarer og nichefilm. På nuværende tidspunkt har The Movies fire biografer, en i henholdsvis Hjerm, Videbæk, Thorsminde og Ræhr, og som det er lige nu benytter The Movies en lettere forældet fremgangsmåde til at have et overblik over film, biografer og solgte billetter.
 
+# Team Struktur
+
+
 # High Level Design
 I har nu lavet et plan og skal i gang med første sprint og udarbejdelse af The Movies analyseartefakter.
-
-
 
 **Krav til HLD-fasen:**
  - Beskriv systemet med de nødvendige artefakter inden for HLD.
