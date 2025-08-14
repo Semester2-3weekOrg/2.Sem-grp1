@@ -15,7 +15,7 @@ namespace TheMovies.ViewModels
     /// to  support data binding and notify the UI of property changes.</remarks>
     public class MainViewModel : INotifyPropertyChanged
     {
-        // Lister til visning
+        // Lister til visning..
         public ObservableCollection<Movie> Movies { get; set; }
         public ObservableCollection<Genre> Genres { get; set; }
 
