@@ -9,7 +9,6 @@ namespace TheMovies.View
         public MainPageView()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
         }
 
 
