@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 using TheMovies.Commands;
 using TheMovies.Models;
@@ -108,8 +109,8 @@ namespace TheMovies.ViewModels
                     Length = Duration,
                     Genre = SelectedGenre
                 });
-
                 StatusMessage = "Successfully added!";
+                MessageBox.Show($"{StatusMessage}");
                 MovieName = string.Empty;
                 Duration = 0;
                 SelectedGenre = null;
@@ -117,6 +118,7 @@ namespace TheMovies.ViewModels
             else
             {
                 StatusMessage = "Please fill out all fields!";
+                MessageBox.Show($"{StatusMessage}");
             }
         }
 
@@ -127,10 +129,12 @@ namespace TheMovies.ViewModels
             {
                 Movies.Remove(movieToRemove);
                 StatusMessage = "Successfully removed!";
+                MessageBox.Show($"{StatusMessage}");
             }
             else
             {
                 StatusMessage = "Movie not found!";
+                MessageBox.Show($"{StatusMessage}");
             }
         }
 

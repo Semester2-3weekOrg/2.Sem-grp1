@@ -9,6 +9,16 @@
       Title="RemoveMovieView">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock TextAlignment="Center"
+                   Grid.Row="0"
+                   Margin="5"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">Remove movie</TextBlock>
     </Grid>
 </Page>

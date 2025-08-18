@@ -6,8 +6,84 @@
         xmlns:local="clr-namespace:TheMovies"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280">
-    <Grid>
+    <Window.CommandBindings>
+        <CommandBinding Command="NavigationCommands.BrowseBack"
+                    CanExecute="BrowseBack_CanExecute"
+                    Executed="BrowseBack_Executed"/>
+        <CommandBinding Command="NavigationCommands.BrowseForward"
+                    CanExecute="BrowseForward_CanExecute"
+                    Executed="BrowseForward_Executed"/>
+    </Window.CommandBindings>
+
+
+    <Grid ShowGridLines="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar (persistent across pages) -->
+        <Grid Grid.Column="0" Margin="10" ShowGridLines="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                   TextAlignment="Center"
+                   FontSize="24"
+                   FontWeight="ExtraBold"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,10"
+                   VerticalAlignment="Center">The<LineBreak/>Movies</TextBlock>
+
+            <StackPanel Grid.Row="1">
+                <Button Content="Home"
+                        Tag="View/MainPageView.xaml"
+                        Click="NavigateButton_Click"
+                        MinWidth="150" MinHeight="50"
+                        Margin="0,0,0,5"/>
+                <Button Content="Book"
+                        Click="NavigateButton_Click"
+                        MinWidth="150" MinHeight="50"
+                        Margin="0,5,0,5"/>
+                <Button Content="Add"
+                        Tag="View/AddMovieView.xaml"
+                        Click="NavigateButton_Click"
+                        MinWidth="150" MinHeight="50"
+                        Margin="0,5,0,5"/>
+                <Button Content="Remove"
+                        Tag="View/RemoveMovieView.xaml"
+                        Click="NavigateButton_Click"
+                        MinWidth="150" MinHeight="50"
+                        Margin="0,5,0,5"/>
+                <Button Content="Placeholder"
+                        Click="NavigateButton_Click"
+                        MinWidth="150" MinHeight="50"
+                        Margin="0,5,0,5"/>
+                <Button Content="Placeholder"
+                        Click="NavigateButton_Click"
+                        MinWidth="150" MinHeight="50"
+                        Margin="0,5,0,5"/>
+                <Button Content="Placeholder"
+                        Click="NavigateButton_Click"
+                        MinWidth="150" MinHeight="50"
+                        Margin="0,5,0,5"/>
+                <Button Content="Placeholder"
+                        Click="NavigateButton_Click"
+                        MinWidth="150" MinHeight="50"
+                        Margin="0,5,0,5"/>
+                <Button Content="Placeholder"
+                        Click="NavigateButton_Click"
+                        MinWidth="150" MinHeight="50"
+                        Margin="0,5,0,0"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Main content area -->
         <Frame x:Name="MainFrame"
-               NavigationUIVisibility="Hidden" Margin="10,10,10,10" />
+           Grid.Column="1"
+           NavigationUIVisibility="Hidden"
+           Margin="10"/>
     </Grid>
 </Window>

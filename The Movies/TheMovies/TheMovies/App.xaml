@@ -6,8 +6,8 @@
     <Application.Resources>
         <Style TargetType="Page">
             <Setter Property="Background" Value="White"/>
-            <Setter Property="Height" Value="720"/>
-            <Setter Property="Width" Value="1280"/>
+            <Setter Property="Height" Value="684"/>
+            <Setter Property="Width" Value="1090"/>
         </Style>
         <Style TargetType="Window">
             <Setter Property="Background" Value="White"/>
