@@ -1,14 +1,14 @@
-﻿<Page x:Class="TheMovies.View.AddMovieView"
+﻿<Page x:Class="TheMovies.View.AddMovieShowView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:TheMovies.View"
+      xmlns:local="clr-namespace:TheMovies"
       mc:Ignorable="d" 
       d:DesignHeight="684" d:DesignWidth="1090"
-      Title="AddMovieView">
+      Title="AddMovieShowView">
 
-    <Grid ShowGridLines="True">
+    <Grid ShowGridLines="True" Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -24,47 +24,51 @@
                    FontSize="24"
                    FontWeight="Bold"
                    HorizontalAlignment="Center"
-                   VerticalAlignment="Center">Add movie</TextBlock>
+                   VerticalAlignment="Center">Add movie show</TextBlock>
 
         <Grid Grid.Row="1" ShowGridLines="True">
 
             <StackPanel Margin="0,20,0,20">
                 <TextBlock Text="Movie name: " 
                            Margin="0,5,0,5"/>
-                <TextBox Text="{Binding MovieName}" 
-                         HorizontalAlignment="Left" 
-                         Width="545" 
-                         Margin="0,0,0,5"/>
-
-                <TextBlock Text="Duration: " 
-                           Margin="0,5,0,5"/>
-                <TextBox Text="{Binding Duration}"
-                         HorizontalAlignment="Left" 
-                         Width="545" 
-                         Margin="0,0,0,5"/>
-
-                <TextBlock Text="Genre: " 
-                           Margin="0,5,0,5"/>
-                <ComboBox ItemsSource="{Binding Genres}" 
-                          HorizontalAlignment="Left" 
-                          SelectedItem="{Binding SelectedGenre, Mode=TwoWay}" 
+                <ComboBox ItemsSource="{Binding MovieName}"
+                          HorizontalAlignment="Left"
+                          SelectedItem="{Binding SelectedMovieName, Mode=TwoWay}" 
                           DisplayMemberPath="Name" 
                           Width="545" 
                           Margin="0,0,0,5"/>
 
-                <TextBlock Text="Instructor: " 
+                <TextBlock Text="Playtime: " 
                            Margin="0,5,0,5"/>
-                <TextBox Text="{Binding Instructor}" 
+                <TextBox Text="{Binding PlayTime, UpdateSourceTrigger=PropertyChanged}"
                          HorizontalAlignment="Left" 
                          Width="545" 
                          Margin="0,0,0,5"/>
 
-                <TextBlock Text="Premiere date: " 
+                <TextBlock Text="Play date: " 
                            Margin="0,5,0,5"/>
-                <TextBox Text="{Binding PremiereDate, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox Text="{Binding PlayDate, UpdateSourceTrigger=PropertyChanged}"
                          HorizontalAlignment="Left" 
                          Width="545" 
                          Margin="0,0,0,5"/>
+
+                <TextBlock Text="Cinema: " 
+                           Margin="0,5,0,5"/>
+                <ComboBox ItemsSource="{Binding Cinemas}" 
+                          HorizontalAlignment="Left" 
+                          SelectedItem="{Binding SelectedCinema, Mode=TwoWay}" 
+                          DisplayMemberPath="Name" 
+                          Width="545" 
+                          Margin="0,0,0,5"/>
+
+                <TextBlock Text="Cinema hall: " 
+                   Margin="0,5,0,5"/>
+                <ComboBox ItemsSource="{Binding CinemaHalls}" 
+                  HorizontalAlignment="Left" 
+                  SelectedItem="{Binding SelectedCinemaHall, Mode=TwoWay}" 
+                  DisplayMemberPath="Name" 
+                  Width="545" 
+                  Margin="0,0,0,5"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="2" ShowGridLines="True">
@@ -79,7 +83,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Button Content="Add"
-                        Command="{Binding AddMovieCommand}"
+                        Command="{Binding AddMovieShowCommand}"
                         Width="150" 
                         Height="50"
                         Margin="10"
