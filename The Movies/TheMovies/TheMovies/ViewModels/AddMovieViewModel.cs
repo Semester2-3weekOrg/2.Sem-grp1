@@ -8,40 +8,33 @@ using TheMovies.Models;
 
 namespace TheMovies.ViewModels
 {
-    /// <summary>
-    /// Represents the main view model for managing movies and genres in a user interface.
-    /// </summary>
-    /// <remarks>This view model provides collections of movies and genres for display, bindings for user
-    /// input fields,  and commands for adding and removing movies. It implements <see cref="INotifyPropertyChanged"/>
-    /// to  support data binding and notify the UI of property changes.</remarks>
-    public class MainViewModel : INotifyPropertyChanged
+    internal class AddMovieViewModel : INotifyPropertyChanged
     {
-        // Lister til visning.
+        #region Lister til visning
         public ObservableCollection<Movie> Movies { get; set; }
         public ObservableCollection<Genre> Genres { get; set; }
+        #endregion
 
-        // Bindings til inputfelter
+        #region Binding til inputfelter
+
         private string _movieName = string.Empty; // Initialized to avoid CS8618
         public string MovieName
         {
             get => _movieName;
             set { _movieName = value; OnPropertyChanged(); }
         }
-
         private int _duration;
         public int Duration
         {
             get => _duration;
             set { _duration = value; OnPropertyChanged(); }
         }
-
         private Genre? _selectedGenre;
         public Genre? SelectedGenre
         {
             get => _selectedGenre;
             set { _selectedGenre = value; OnPropertyChanged(); }
         }
-
         private string _statusMessage = string.Empty; // Initialized to avoid CS8618
         public string StatusMessage
         {
@@ -49,11 +42,16 @@ namespace TheMovies.ViewModels
             set { _statusMessage = value; OnPropertyChanged(); }
         }
 
-        // Commands
-        public ICommand RemoveMovieCommand { get; }
+        #endregion
 
-        public MainViewModel()
+        #region Commands
+        public ICommand AddMovieCommand { get; }
+        #endregion
+
+        public AddMovieViewModel()
         {
+            AddMovieCommand = new RelayCommand(AddMovie);
+
             #region DUMMY DATA
             Genres = new ObservableCollection<Genre>
             {
@@ -94,28 +92,34 @@ namespace TheMovies.ViewModels
                 new Movie { Id = 17, Title = "Three Billboards Outside Ebbing, Missouri", Length = 115, Genre = Genres.First(g => g.Name == "Comedy") }
             };
             #endregion
-
-
-            RemoveMovieCommand = new RelayCommand(RemoveMovie);
         }
 
-
-
-        private void RemoveMovie()
+        #region METHODS
+        private void AddMovie()
         {
-            var movieToRemove = Movies.FirstOrDefault(m => m.Title == MovieName);
-            if (movieToRemove != null)
+            if (!string.IsNullOrWhiteSpace(MovieName) && SelectedGenre != null && Duration > 0)
             {
-                Movies.Remove(movieToRemove);
-                StatusMessage = "Successfully removed!";
+                Movies.Add(new Movie
+                {
+                    Id = Movies.Count + 1,
+                    Title = MovieName,
+                    Length = Duration,
+                    Genre = SelectedGenre
+                });
+                StatusMessage = "Successfully added!";
                 MessageBox.Show($"{StatusMessage}");
+                MovieName = string.Empty;
+                Duration = 0;
+                SelectedGenre = null;
             }
             else
             {
-                StatusMessage = "Movie not found!";
+                StatusMessage = "Please fill out all fields!";
                 MessageBox.Show($"{StatusMessage}");
             }
         }
+        #endregion
+
 
         public event PropertyChangedEventHandler? PropertyChanged; // Nullable to avoid CS8618
         protected void OnPropertyChanged([CallerMemberName] string? name = null)
