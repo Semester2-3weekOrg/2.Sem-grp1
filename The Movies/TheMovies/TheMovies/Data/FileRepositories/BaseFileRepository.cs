@@ -1,21 +1,30 @@
-﻿using TheMovies.Data.Interfaces;
+﻿using System.Collections.ObjectModel;
+using TheMovies.Data.Interfaces;
 
 namespace TheMovies.Data.FileRepositories
 {
     internal abstract class BaseFileRepository<T> : IBaseRepository<T> where T : class
     {
-        protected BaseFileRepository(string filePath)
-        {
+        protected readonly Datahandler<T> _dataHandler;
+        protected ObservableCollection<T> _items;
 
+        public ObservableCollection<T> Items => _items;
+
+        protected BaseFileRepository(Datahandler<T> dataHandler)
+        {
+            _dataHandler = dataHandler;
+            _items = new ObservableCollection<T>(_dataHandler.Load());
         }
         public void Add(T item)
         {
-            throw new NotImplementedException();
+            _items.Add(item);
+            SaveAll();
         }
 
         public void Delete(T item)
         {
-            throw new NotImplementedException();
+            _items.Remove(item);
+            SaveAll();
         }
 
         public List<T> GetAll()
@@ -25,12 +34,12 @@ namespace TheMovies.Data.FileRepositories
 
         public void SaveAll()
         {
-            throw new NotImplementedException();
+            _dataHandler.Save(_items);
         }
 
         public void Update(T item)
         {
-            throw new NotImplementedException();
+            SaveAll();
         }
     }
 }

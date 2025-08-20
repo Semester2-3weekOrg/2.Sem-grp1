@@ -49,6 +49,20 @@
                           DisplayMemberPath="Name" 
                           Width="545" 
                           Margin="0,0,0,5"/>
+                
+                <TextBlock Text="Instructor: " 
+                           Margin="0,5,0,5"/>
+                <TextBox Text="{Binding Instructor}"
+                         HorizontalAlignment="Left"
+                         Width="545" 
+                         Margin="0,0,0,5"/>
+
+                <TextBlock Text="Premiere date: " 
+                           Margin="0,5,0,5"/>
+                <TextBox Text="{Binding PremiereDateInput}"
+                         HorizontalAlignment="Left"
+                         Width="545" 
+                         Margin="0,0,0,5"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="2" ShowGridLines="True">
@@ -68,6 +82,7 @@
                         Height="50"
                         Margin="10"
                         Grid.Column="3"/>
+                
             </Grid>
         </Grid>
     </Grid>
