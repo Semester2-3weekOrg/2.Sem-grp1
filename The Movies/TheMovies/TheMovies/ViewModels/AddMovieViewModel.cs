@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using TheMovies.Commands;
@@ -9,55 +10,78 @@ using TheMovies.Models;
 
 namespace TheMovies.ViewModels
 {
-    /// <summary>
-    /// Represents the main view model for managing movies and genres in a user interface.
-    /// </summary>
-    /// <remarks>This view model provides collections of movies and genres for display, bindings for user
-    /// input fields,  and commands for adding and removing movies. It implements <see cref="INotifyPropertyChanged"/>
-    /// to  support data binding and notify the UI of property changes.</remarks>
-    public class MainViewModel : INotifyPropertyChanged
+    internal class AddMovieViewModel : INotifyPropertyChanged
     {
-        private MovieFileRepository _movieRepo;
-        // Lister til visning.
-        public ObservableCollection<Movie> Movies => _movieRepo.Items;
+        private readonly MovieFileRepository _movieRepo;
+        #region Lister til visning
+        //public ObservableCollection<Movie> Movies { get; set; }
         public ObservableCollection<Genre> Genres { get; set; }
+        public ObservableCollection<Movie> Movies => _movieRepo.Items;
+        #endregion
 
-        // Bindings til inputfelter
+        #region Binding til inputfelter
+
         private string _movieName = string.Empty; // Initialized to avoid CS8618
         public string MovieName
         {
             get => _movieName;
             set { _movieName = value; OnPropertyChanged(); }
         }
-
         private int _duration;
         public int Duration
         {
             get => _duration;
             set { _duration = value; OnPropertyChanged(); }
         }
-
         private Genre? _selectedGenre;
         public Genre? SelectedGenre
         {
             get => _selectedGenre;
             set { _selectedGenre = value; OnPropertyChanged(); }
         }
-
-        private string _statusMessage = string.Empty; // Initialized to avoid CS8618
+        private string _instructor;
+        public string Instructor
+        {
+            get => _instructor;
+            set { _instructor = value; OnPropertyChanged(); }
+        }
+        private DateOnly? _premiereDate;
+        public DateOnly? PremiereDate
+        {
+            get => _premiereDate;
+            set { _premiereDate = value; OnPropertyChanged(); }
+        }
+        private string? _premiereDateInput;
+        public string? PremiereDateInput
+        {
+            get => _premiereDateInput;
+            set { _premiereDateInput = value; OnPropertyChanged(); PremiereDate = TryParseToDate(value); }
+        }
+        private string _statusMessage = string.Empty;
         public string StatusMessage
         {
             get => _statusMessage;
             set { _statusMessage = value; OnPropertyChanged(); }
         }
 
-        // Commands
-        public ICommand RemoveMovieCommand { get; }
+        #endregion
 
-        public MainViewModel()
+        #region Commands
+        public ICommand AddMovieCommand { get; }
+        //public ICommand RemoveMovieCommand { get; }
+        public ICommand SaveAllCommand { get; }
+        #endregion
+
+        public AddMovieViewModel()
         {
+            //_movieRepo = new MovieFileRepository();
 
+            // Create the repository
             _movieRepo = new MovieFileRepository();
+
+            AddMovieCommand = new RelayCommand(_ => AddMovie());
+            //RemoveMovieCommand = new RelayCommand(movie => RemoveMovie(movie as Movie), movie => movie is Movie);
+            SaveAllCommand = new RelayCommand(_ => _movieRepo.SaveAll());
 
             #region DUMMY DATA
             Genres = new ObservableCollection<Genre>
@@ -78,7 +102,7 @@ namespace TheMovies.ViewModels
                 new Genre { Id = 14, Name = "Fantasy" }
             };
 
-            //List<Movie> movie;
+            //Movies = new ObservableCollection<Movie>
             //{
             //    new Movie { Id = 1, Title = "1917", Length = 117, Genre = Genres.First(g => g.Name == "Drama") }, // Drama, Thriller, War
             //    new Movie { Id = 2, Title = "The Wife", Length = 99, Genre = Genres.First(g => g.Name == "Drama") },
@@ -99,27 +123,70 @@ namespace TheMovies.ViewModels
             //    new Movie { Id = 17, Title = "Three Billboards Outside Ebbing, Missouri", Length = 115, Genre = Genres.First(g => g.Name == "Comedy") }
             //};
             #endregion
-
-            RemoveMovieCommand = new RelayCommand(_ => RemoveMovie());
         }
 
-
-
-        private void RemoveMovie()
+        #region METHODS
+        private void AddMovie()
         {
-            var movieToRemove = Movies.FirstOrDefault(m => m.Title == MovieName);
-            if (movieToRemove != null)
+            if (!string.IsNullOrWhiteSpace(MovieName) && SelectedGenre != null && Duration > 0)
             {
-                Movies.Remove(movieToRemove);
-                StatusMessage = "Successfully removed!";
+
+                var newMovie = new Movie()
+                {
+                    Id = _movieRepo.Items.Count + 1,
+                    Title = MovieName,
+                    Length = Duration,
+                    Genre = SelectedGenre,
+                    Instructor = Instructor,
+                    PremiereDate = PremiereDate
+                };
+                //_movieRepo.Items.Add(newMovie);
+                _movieRepo.Add(newMovie);
+                StatusMessage = "Successfully added!";
                 MessageBox.Show($"{StatusMessage}");
+                MovieName = string.Empty;
+                Duration = 0;
+                SelectedGenre = null;
+                Instructor = string.Empty;
+                PremiereDate = DateOnly.MinValue;
             }
             else
             {
-                StatusMessage = "Movie not found!";
+                StatusMessage = "Please fill out all fields!";
                 MessageBox.Show($"{StatusMessage}");
             }
         }
+
+        private DateOnly? TryParseToDate(string? input)
+        {
+            if (string.IsNullOrWhiteSpace(input)) return null;
+            string cleaned = Regex.Replace(input.Trim(), @"\D", "");
+
+            if (cleaned.Length == 4) // e.g. 8825 -> 08/08/2025
+                cleaned = $"0{cleaned[0]}0{cleaned[1]}{cleaned[2]}{cleaned[3]}";
+
+            string? format = cleaned.Length switch
+            {
+                6 => "ddMMyy",   // 080825 -> 08/08/25
+                8 => "ddMMyyyy", // 08082025 -> 08/08/2025
+                _ => null
+            };
+
+            if (format != null &&
+                DateOnly.TryParseExact(cleaned, format, null, System.Globalization.DateTimeStyles.None, out var dt))
+            {
+                return dt;
+            }
+
+            if (DateOnly.TryParse(input, out var fallback))
+                return fallback;
+
+            return null;
+        }
+
+
+        #endregion
+
 
         public event PropertyChangedEventHandler? PropertyChanged; // Nullable to avoid CS8618
         protected void OnPropertyChanged([CallerMemberName] string? name = null)

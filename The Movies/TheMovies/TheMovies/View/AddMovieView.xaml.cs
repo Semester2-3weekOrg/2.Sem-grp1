@@ -11,7 +11,7 @@ namespace TheMovies.View
         public AddMovieView()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
+            DataContext = new AddMovieViewModel();
         }
     }
 }

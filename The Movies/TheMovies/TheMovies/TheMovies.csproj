@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data\FileRepositories\" />
-    <Folder Include="Data\Interfaces\" />
+    <Folder Include="Data\SavedFiles\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
 
 </Project>
