@@ -28,7 +28,7 @@
 
         public string HallId { get; set; }
 
-        public int CleaningTime { get; set; }
+        public int CleaningTime = 15;
 
         private void UpdateHallId()
         {

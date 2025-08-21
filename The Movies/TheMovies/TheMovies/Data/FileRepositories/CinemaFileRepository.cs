@@ -8,7 +8,7 @@ namespace TheMovies.Data.FileRepositories
         public CinemaFileRepository()
         : base(new Datahandler<Cinema>(
 
-            serializeFunc: cinema => $"{cinema.Id};{cinema.CinemaName};{cinema.CinemaInitials};{cinema.Halls}",
+            serializeFunc: cinema => $"{cinema.Id};{cinema.CinemaName};{cinema.CinemaInitials};{string.Join("|", cinema.Halls.Select(h => $"{h.Id},{h.HallNumber},{h.CinemaInitials},{h.HallId},{h.CleaningTime}"))}",
             deserializeFunc: line =>
             {
                 var parts = line.Split(';');
