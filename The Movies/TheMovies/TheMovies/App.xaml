@@ -15,8 +15,5 @@
             <Setter Property="Height" Value="720"/>
             <Setter Property="Width" Value="1280"/>
         </Style>
-        
-        <!-- Shared VM for the whole app -->
-        <vm:MainViewModel x:Key="MainVM" />
     </Application.Resources>
 </Application>

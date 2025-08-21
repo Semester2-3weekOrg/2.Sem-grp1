@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using TheMovies.ViewModels;
 
 namespace TheMovies.View
 {

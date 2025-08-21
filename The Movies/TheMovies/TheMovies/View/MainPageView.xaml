@@ -6,8 +6,7 @@
       xmlns:local="clr-namespace:TheMovies.View"
       mc:Ignorable="d" 
       d:DesignHeight="684" d:DesignWidth="1090"
-      Title="MainPageView"
-      DataContext="{StaticResource MainVM}">
+      Title="MainPageView">
 
     <Grid ShowGridLines="True">
         <Grid.RowDefinitions>
