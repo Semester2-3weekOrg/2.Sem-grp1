@@ -6,6 +6,7 @@
         public string HallId { get; set; } // HallNumber + CinemaInitials
         public string HallNumber { get; set; }
         public string CinemaInitials { get; set; }
+        public int CleaningTime { get; set; }
 
         //Overriding ToString method for better readability in UI
         public override string ToString()
