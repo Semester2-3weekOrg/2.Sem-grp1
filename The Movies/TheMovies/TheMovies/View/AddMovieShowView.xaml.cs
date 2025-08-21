@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using TheMovies.ViewModels;
 
 namespace TheMovies.View
 {
@@ -10,6 +11,7 @@ namespace TheMovies.View
         public AddMovieShowView()
         {
             InitializeComponent();
+            DataContext = new AddMovieShowViewModel();
         }
     }
 }

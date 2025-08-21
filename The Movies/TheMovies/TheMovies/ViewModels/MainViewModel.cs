@@ -1,9 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows;
 using System.Windows.Input;
-using TheMovies.Commands;
 using TheMovies.Data.FileRepositories;
 using TheMovies.Models;
 
@@ -23,12 +21,12 @@ namespace TheMovies.ViewModels
         public ObservableCollection<Genre> Genres { get; set; }
 
         // Bindings til inputfelter
-        private string _movieName = string.Empty; // Initialized to avoid CS8618
-        public string MovieName
-        {
-            get => _movieName;
-            set { _movieName = value; OnPropertyChanged(); }
-        }
+        //private string _movieName = string.Empty; // Initialized to avoid CS8618
+        //public string MovieName
+        //{
+        //    get => _movieName;
+        //    set { _movieName = value; OnPropertyChanged(); }
+        //}
 
         private int _duration;
         public int Duration
@@ -100,26 +98,26 @@ namespace TheMovies.ViewModels
             //};
             #endregion
 
-            RemoveMovieCommand = new RelayCommand(_ => RemoveMovie());
+            //RemoveMovieCommand = new RelayCommand(_ => RemoveMovie());
         }
 
 
 
-        private void RemoveMovie()
-        {
-            var movieToRemove = Movies.FirstOrDefault(m => m.Title == MovieName);
-            if (movieToRemove != null)
-            {
-                Movies.Remove(movieToRemove);
-                StatusMessage = "Successfully removed!";
-                MessageBox.Show($"{StatusMessage}");
-            }
-            else
-            {
-                StatusMessage = "Movie not found!";
-                MessageBox.Show($"{StatusMessage}");
-            }
-        }
+        //private void RemoveMovie()
+        //{
+        //    var movieToRemove = Movies.FirstOrDefault(m => m.Title == MovieName);
+        //    if (movieToRemove != null)
+        //    {
+        //        Movies.Remove(movieToRemove);
+        //        StatusMessage = "Successfully removed!";
+        //        MessageBox.Show($"{StatusMessage}");
+        //    }
+        //    else
+        //    {
+        //        StatusMessage = "Movie not found!";
+        //        MessageBox.Show($"{StatusMessage}");
+        //    }
+        //}
 
         public event PropertyChangedEventHandler? PropertyChanged; // Nullable to avoid CS8618
         protected void OnPropertyChanged([CallerMemberName] string? name = null)

@@ -47,7 +47,7 @@
                         Click="NavigateButton_Click"
                         MinWidth="150" MinHeight="50"
                         Margin="0,5,0,5"/>
-                <Button Content="Add"
+                <Button Content="Add Movie"
                         Tag="View/AddMovieView.xaml"
                         Click="NavigateButton_Click"
                         MinWidth="150" MinHeight="50"
@@ -57,7 +57,7 @@
                         Click="NavigateButton_Click"
                         MinWidth="150" MinHeight="50"
                         Margin="0,5,0,5"/>
-                <Button Content="Remove"
+                <Button Content="Remove Movie"
                         Tag="View/RemoveMovieView.xaml"
                         Click="NavigateButton_Click"
                         MinWidth="150" MinHeight="50"

@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <Folder Include="Data\SavedFiles\" />
-    <Folder Include="Helpers\" />
   </ItemGroup>
 
 </Project>

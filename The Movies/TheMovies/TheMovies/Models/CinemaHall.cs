@@ -26,7 +26,7 @@
             }
         }
 
-        public string HallId { get; private set; }
+        public string HallId { get; set; }
 
         public int CleaningTime { get; set; }
 
@@ -34,5 +34,6 @@
         {
             HallId = $"{HallNumber}{CinemaInitials}";
         }
+        public List<MovieShow> Shows { get; set; } = new();
     }
 }
