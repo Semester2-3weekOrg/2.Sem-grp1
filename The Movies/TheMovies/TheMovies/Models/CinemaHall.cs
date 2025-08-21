@@ -3,15 +3,36 @@
     class CinemaHall
     {
         public int Id { get; set; }
-        public string HallId { get; set; } // HallNumber + CinemaInitials
-        public string HallNumber { get; set; }
-        public string CinemaInitials { get; set; }
+
+        private string _hallNumber;
+        public string HallNumber
+        {
+            get => _hallNumber;
+            set
+            {
+                _hallNumber = value;
+                UpdateHallId();
+            }
+        }
+
+        private string _cinemaInitials;
+        public string CinemaInitials
+        {
+            get => _cinemaInitials;
+            set
+            {
+                _cinemaInitials = value;
+                UpdateHallId();
+            }
+        }
+
+        public string HallId { get; private set; }
+
         public int CleaningTime { get; set; }
 
-        //Overriding ToString method for better readability in UI
-        public override string ToString()
+        private void UpdateHallId()
         {
-            return $"{HallId}";
+            HallId = $"{HallNumber}{CinemaInitials}";
         }
     }
 }

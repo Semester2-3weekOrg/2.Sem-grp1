@@ -4,6 +4,7 @@
     {
         public int Id { get; set; }
         public required string Name { get; set; }
+        public required string Initials { get; set; }
         public List<CinemaHall> Halls { get; set; }
 
         //Overriding ToString method for better readability in UI
