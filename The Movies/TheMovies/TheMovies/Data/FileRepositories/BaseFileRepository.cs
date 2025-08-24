@@ -5,12 +5,12 @@ namespace TheMovies.Data.FileRepositories
 {
     internal abstract class BaseFileRepository<T> : IBaseRepository<T> where T : class
     {
-        protected readonly Datahandler<T> _dataHandler;
+        protected readonly DataHandler<T> _dataHandler;
         protected ObservableCollection<T> _items;
 
         public ObservableCollection<T> Items => _items;
 
-        protected BaseFileRepository(Datahandler<T> dataHandler)
+        protected BaseFileRepository(DataHandler<T> dataHandler)
         {
             _dataHandler = dataHandler;
             _items = new ObservableCollection<T>(_dataHandler.Load());

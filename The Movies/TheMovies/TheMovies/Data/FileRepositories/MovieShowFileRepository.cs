@@ -11,7 +11,7 @@ namespace TheMovies.Data.FileRepositories
     internal class MovieShowFileRepository : BaseFileRepository<MovieShow>, IMovieShowRepository
     {
         public MovieShowFileRepository()
-        : base(new Datahandler<MovieShow>(
+        : base(new DataHandler<MovieShow>(
 
             serializeFunc: movieShow => $"{movieShow.Id};{movieShow.MovieTitle};{movieShow.PlayTime};{movieShow.PlayDate};{movieShow.Commercial};{movieShow.Duration}",
             deserializeFunc: line =>

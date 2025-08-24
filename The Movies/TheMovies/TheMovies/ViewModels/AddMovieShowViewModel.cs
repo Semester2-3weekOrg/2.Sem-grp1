@@ -46,7 +46,7 @@ namespace TheMovies.ViewModels
             }
         }
 
-
+        private
 
 
 

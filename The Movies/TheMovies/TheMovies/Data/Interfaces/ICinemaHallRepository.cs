@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TheMovies.Models;
 
 namespace TheMovies.Data.Interfaces
 {
-    internal interface ICinemaHallRepository
+    internal interface ICinemaHallRepository : IBaseRepository<CinemaHall>
     {
     }
 }

@@ -2,7 +2,7 @@
 
 namespace TheMovies.Data
 {
-    internal class Datahandler<T>
+    internal class DataHandler<T>
     {
         private static string projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
         private static string folder = Path.Combine(projectPath, "Data");
@@ -12,7 +12,7 @@ namespace TheMovies.Data
         private readonly Func<T, string> _serializeFunc;
         private readonly Func<string, T> _deserializeFunc;
 
-        public Datahandler(Func<T, string> serializeFunc, Func<string, T> deserializeFunc)
+        public DataHandler(Func<T, string> serializeFunc, Func<string, T> deserializeFunc)
         {
 
 

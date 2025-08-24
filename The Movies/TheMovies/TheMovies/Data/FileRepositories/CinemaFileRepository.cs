@@ -6,7 +6,7 @@ namespace TheMovies.Data.FileRepositories
     internal class CinemaFileRepository : BaseFileRepository<Cinema>, ICinemaRepository
     {
         public CinemaFileRepository()
-        : base(new Datahandler<Cinema>(
+        : base(new DataHandler<Cinema>(
 
             serializeFunc: cinema => $"{cinema.Id};{cinema.CinemaName};{cinema.CinemaInitials};{string.Join("|", cinema.Halls.Select(h => $"{h.Id},{h.HallNumber},{h.CinemaInitials},{h.HallId},{h.CleaningTime}"))}",
             deserializeFunc: line =>
