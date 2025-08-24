@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using System.Windows;
-using TheMovies.Commands;
-using TheMovies.Data.FileRepositories;
-using TheMovies.Models;
-using System.Security.Cryptography.X509Certificates;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
+using TheMovies.Commands;
+using TheMovies.Models;
 
 namespace TheMovies.ViewModels
 {
@@ -27,7 +19,7 @@ namespace TheMovies.ViewModels
     {
         private readonly CinemaFileRepository _cinemaRepo;
         #region Lister til visning
-        public ObservableCollection<CinemaViewModel> Cinemas { get; set; }
+        public ObservableCollection<CinemaViewModel> Cinemas => _cinemaRepo.Items;
 
         #endregion
 
@@ -37,14 +29,14 @@ namespace TheMovies.ViewModels
 
         {
             get => _cinemaName;
-            set => { _cinemaName = value; OnPropertyChanged(); }
+            set { _cinemaName = value; OnPropertyChanged(); }
         }
 
         private string _cinemaInitials = string.Empty;
         public string CinemaInitials
         {
             get => _cinemaInitials;
-            set {  _cinemaInitials = value; OnPropertyChanged(); }
+            set { _cinemaInitials = value; OnPropertyChanged(); }
 
         }
 
@@ -66,10 +58,9 @@ namespace TheMovies.ViewModels
 
         {
             _cinemaRepo = new CinemaFileRepository();
-            Cinemas = new ObservableCollection<CinemaViewModel>();
 
             AddCinemaCommand = new RelayCommand(_ => AddCinema());
-            SaveAllCommand = new RelayCommand (_ => _cinemaRepo.SaveAll());
+            SaveAllCommand = new RelayCommand(_ => _cinemaRepo.SaveAll());
         }
 
         private void AddCinema()
@@ -81,8 +72,8 @@ namespace TheMovies.ViewModels
             }
 
             var newCinema = new CinemaViewModel
-
             {
+                Id = _movieRepo.Items.Count + 1,
                 CinemaName = CinemaName,
                 CinemaInitials = CinemaInitials
             };
@@ -96,10 +87,10 @@ namespace TheMovies.ViewModels
 
         }
 
-            #region INotifyPropertyChanged
-            public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string PropertyName = null ) =>
-            PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( PropertyName ) );
+        #region INotifyPropertyChanged
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string PropertyName = null) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
         #endregion
 
 
