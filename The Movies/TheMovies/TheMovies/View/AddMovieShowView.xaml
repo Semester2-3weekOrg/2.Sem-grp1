@@ -56,7 +56,7 @@
                 <ComboBox ItemsSource="{Binding Cinemas}" 
                           HorizontalAlignment="Left" 
                           SelectedItem="{Binding SelectedCinema, Mode=TwoWay}" 
-                          DisplayMemberPath="Name" 
+                          DisplayMemberPath="CinemaName" 
                           Width="545" 
                           Margin="0,0,0,5"/>
 
@@ -64,8 +64,8 @@
                    Margin="0,5,0,5"/>
                 <ComboBox ItemsSource="{Binding CinemaHalls}" 
                   HorizontalAlignment="Left" 
-                  SelectedItem="{Binding SelectedCinemaHall, Mode=TwoWay}" 
-                  DisplayMemberPath="Name" 
+                  SelectedItem="{Binding SelectedCinema, Mode=TwoWay}" 
+                  DisplayMemberPath="HallId" 
                   Width="545" 
                   Margin="0,0,0,5"/>
             </StackPanel>

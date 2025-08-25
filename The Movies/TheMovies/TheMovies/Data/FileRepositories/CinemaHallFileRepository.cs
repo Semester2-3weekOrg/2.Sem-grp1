@@ -6,7 +6,7 @@ namespace TheMovies.Data.FileRepositories
     internal class CinemaHallFileRepository : BaseFileRepository<CinemaHall>, ICinemaHallRepository
     {
         public CinemaHallFileRepository()
-        : base(new DataHandler<CinemaHall>(
+        : base(new Datahandler<CinemaHall>(
 
             serializeFunc: cinemaHall => $"{cinemaHall.Id};{cinemaHall.HallNumber};{cinemaHall.CinemaInitials};{cinemaHall.HallId};{cinemaHall.CleaningTime}",
             deserializeFunc: line =>

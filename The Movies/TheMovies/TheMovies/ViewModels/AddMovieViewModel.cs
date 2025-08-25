@@ -140,9 +140,8 @@ namespace TheMovies.ViewModels
                     Instructor = Instructor,
                     PremiereDate = PremiereDate
                 };
-                //_movieRepo.Items.Add(newMovie);
                 _movieRepo.Add(newMovie);
-                StatusMessage = "Successfully added!";
+                StatusMessage = $"{newMovie.Title} successfully added!";
                 MessageBox.Show($"{StatusMessage}");
                 MovieName = string.Empty;
                 Duration = 0;

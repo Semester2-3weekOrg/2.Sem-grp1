@@ -46,16 +46,19 @@ namespace TheMovies.ViewModels
             }
         }
 
-        private
-
-
-
-
-
-
-
-
-
+        private CinemaHall _selectedHall;
+        public CinemaHall SelectedHall
+        {
+            get => _selectedHall;
+            set
+            {
+                if (_selectedHall != value)
+                {
+                    _selectedHall = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
 
         public event PropertyChangedEventHandler? PropertyChanged; // Nullable to avoid CS8618
