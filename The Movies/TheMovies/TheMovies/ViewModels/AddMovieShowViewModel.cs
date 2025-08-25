@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
+using TheMovies.Commands;
 using TheMovies.Data.FileRepositories;
 using TheMovies.Models;
 
@@ -29,8 +31,12 @@ namespace TheMovies.ViewModels
         {
             _movieRepo = new MovieFileRepository();
             _cinemaRepo = new CinemaFileRepository();
+
+            //AddMovieShowCommand = new RelayCommand(_ => AddMovieShow());
+            SaveAllCommand = new RelayCommand(_ => _movieRepo.SaveAll());
         }
 
+        #region Input
         private Cinema _selectedCinema;
         public Cinema SelectedCinema
         {
@@ -60,6 +66,82 @@ namespace TheMovies.ViewModels
                 }
             }
         }
+
+        private Movie _selectedMovie;
+        public Movie SelectedMovie
+        {
+            get => _selectedMovie;
+            set
+            {
+                if (value != _selectedMovie)
+                {
+                    _selectedMovie = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private TimeOnly _playTime;
+        public TimeOnly PlayTime
+        {
+            get => _playTime;
+            set { _playTime = value; OnPropertyChanged(); }
+        }
+
+        private DateOnly _playDate;
+        public DateOnly PlayDate
+        {
+            get => _playDate;
+            set { _playDate = value; OnPropertyChanged(); }
+        }
+
+        private string _statusMessage = string.Empty;
+        public string StatusMessage
+        {
+            get => _statusMessage;
+            set { _statusMessage = value; OnPropertyChanged(); }
+        }
+
+
+
+        #endregion
+
+        #region Commands
+        public ICommand AddMovieShowCommand { get; }
+
+        public ICommand SaveAllCommand { get; }
+        #endregion
+
+
+        //private void AddMovie()
+        //{
+        //    if (!string.IsNullOrWhiteSpace(MovieName) && SelectedGenre != null && Duration > 0)
+        //    {
+
+        //        var newMovie = new Movie()
+        //        {
+        //            Id = _movieRepo.Items.Count + 1,
+        //            Title = MovieName,
+        //            Length = Duration,
+        //            Genre = SelectedGenre,
+        //            Instructor = Instructor,
+        //            PremiereDate = PremiereDate
+        //        };
+        //        _movieRepo.Add(newMovie);
+        //        StatusMessage = $"{newMovie.Title} successfully added!";
+        //        MessageBox.Show($"{StatusMessage}");
+        //        MovieName = string.Empty;
+        //        Duration = 0;
+        //        SelectedGenre = null;
+        //        Instructor = string.Empty;
+        //        PremiereDate = DateOnly.MinValue;
+        //    }
+        //    else
+        //    {
+        //        StatusMessage = "Please fill out all fields!";
+        //        MessageBox.Show($"{StatusMessage}");
+        //    }
+        //}
 
 
         public event PropertyChangedEventHandler? PropertyChanged; // Nullable to avoid CS8618

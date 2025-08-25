@@ -14,7 +14,6 @@ namespace TheMovies.ViewModels
     {
         private readonly MovieFileRepository _movieRepo;
         #region Lister til visning
-        //public ObservableCollection<Movie> Movies { get; set; }
         public ObservableCollection<Genre> Genres { get; set; }
         public ObservableCollection<Movie> Movies => _movieRepo.Items;
         #endregion
@@ -75,12 +74,12 @@ namespace TheMovies.ViewModels
         public AddMovieViewModel()
         {
             //_movieRepo = new MovieFileRepository();
+            //RemoveMovieCommand = new RelayCommand(movie => RemoveMovie(movie as Movie), movie => movie is Movie);
 
             // Create the repository
             _movieRepo = new MovieFileRepository();
 
             AddMovieCommand = new RelayCommand(_ => AddMovie());
-            //RemoveMovieCommand = new RelayCommand(movie => RemoveMovie(movie as Movie), movie => movie is Movie);
             SaveAllCommand = new RelayCommand(_ => _movieRepo.SaveAll());
 
             #region DUMMY DATA
