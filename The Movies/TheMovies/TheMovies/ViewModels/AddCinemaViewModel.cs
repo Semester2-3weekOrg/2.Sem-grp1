@@ -1,6 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
@@ -14,14 +15,9 @@ namespace TheMovies.ViewModels
     internal class AddCinemaViewModel : ViewModelBase
     {
         private readonly CinemaFileRepository _cinemaRepo;
-        #region Lister til visning
+
         public ObservableCollection<Cinema> Cinemas => _cinemaRepo.Items;
 
-
-
-        #endregion
-
-        #region Inputfelter
         private string _cinemaName = string.Empty;
         public string CinemaName
         {
@@ -33,7 +29,6 @@ namespace TheMovies.ViewModels
         {
             get => _cinemaInitials;
             set { _cinemaInitials = value; OnPropertyChanged(); }
-
         }
 
         private string _statusMessage = string.Empty;
@@ -41,51 +36,76 @@ namespace TheMovies.ViewModels
         {
             get => _statusMessage;
             set { _statusMessage = value; OnPropertyChanged(); }
-
         }
 
+        private ObservableCollection<CinemaHall> _cinemaHalls = new();
+        public ObservableCollection<CinemaHall> CinemaHalls
+        {
+            get => _cinemaHalls;
+            set { _cinemaHalls = value; OnPropertyChanged(); }
+        }
 
-        #endregion
+        private CinemaHall _selectedCinemaHall;
+        public CinemaHall SelectedCinemaHall
+        {
+            get => _selectedCinemaHall;
+            set { _selectedCinemaHall = value; OnPropertyChanged(); }
+        }
 
-        #region Commands
         public ICommand AddCinemaCommand { get; }
         public ICommand SaveAllCommand { get; }
-        #endregion
+        public ICommand AddHallCommand { get; }
+        public ICommand RemoveHallCommand { get; }
 
         public AddCinemaViewModel()
         {
             _cinemaRepo = new CinemaFileRepository();
-
             AddCinemaCommand = new RelayCommand(_ => AddCinema());
             SaveAllCommand = new RelayCommand(_ => _cinemaRepo.SaveAll());
+            AddHallCommand = new RelayCommand(_ => AddHall(), _ => !string.IsNullOrWhiteSpace(CinemaInitials));
+            RemoveHallCommand = new RelayCommand(_ => RemoveHall(), _ => SelectedCinemaHall != null);
         }
 
         private void AddCinema()
         {
             if (!string.IsNullOrWhiteSpace(CinemaName) && !string.IsNullOrWhiteSpace(CinemaInitials))
             {
-                var newCinema = new Cinema()
+                var newCinema = new Cinema
                 {
                     Id = _cinemaRepo.Items.Count + 1,
                     CinemaName = CinemaName,
                     CinemaInitials = CinemaInitials,
-                    Halls = new List<CinemaHall>() // Fix: Provide a valid initializer for Halls
+                    Halls = CinemaHalls?.ToList() ?? new List<CinemaHall>()
                 };
 
                 _cinemaRepo.Add(newCinema);
                 StatusMessage = $"{newCinema.CinemaName}({newCinema.CinemaInitials}) successfully added!";
-                Console.Write(StatusMessage + "Console WriteLine");
-                Debug.Write(StatusMessage + "Debugger");
-                MessageBox.Show($"{StatusMessage}");
-                //Nulstil felter
+                MessageBox.Show(StatusMessage);
                 CinemaName = string.Empty;
                 CinemaInitials = string.Empty;
+                CinemaHalls = new ObservableCollection<CinemaHall>();
             }
             else
             {
                 StatusMessage = "Please fill out all fields!";
-                MessageBox.Show($"{StatusMessage}");
+                MessageBox.Show(StatusMessage);
             }
+        }
+
+        private void AddHall()
+        {
+            CinemaHalls.Add(new CinemaHall
+            {
+                HallNumber = $"Hall {CinemaHalls.Count + 1}",
+                CleaningTime = 15,
+                CinemaInitials = CinemaInitials
+            });
+        }
+
+        private void RemoveHall()
+        {
+            if (SelectedCinemaHall != null)
+                CinemaHalls.Remove(SelectedCinemaHall);
         }
 
     }
