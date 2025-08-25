@@ -21,7 +21,7 @@ namespace TheMovies.ViewModels
         public ObservableCollection<Movie> Movies => _movieRepo.Items;
         public ObservableCollection<Cinema> Cinemas => _cinemaRepo.Items;
         public ObservableCollection<CinemaHall> SelectedCinemaHalls
-    => new ObservableCollection<CinemaHall>(SelectedCinema?.Halls ?? new List<CinemaHall>());
+            => new ObservableCollection<CinemaHall>(SelectedCinema?.Halls ?? new List<CinemaHall>());
 
         #endregion
 
@@ -42,6 +42,7 @@ namespace TheMovies.ViewModels
                     _selectedCinema = value;
                     OnPropertyChanged();
                     OnPropertyChanged(nameof(SelectedCinemaHalls));
+                    SelectedHall = null;
                 }
             }
         }

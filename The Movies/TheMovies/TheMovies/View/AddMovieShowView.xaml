@@ -62,7 +62,7 @@
 
                 <TextBlock Text="Cinema hall: " 
                    Margin="0,5,0,5"/>
-                <ComboBox ItemsSource="{Binding CinemaHalls}" 
+                <ComboBox ItemsSource="{Binding SelectedCinemaHalls}" 
                   HorizontalAlignment="Left" 
                   SelectedItem="{Binding SelectedCinema, Mode=TwoWay}" 
                   DisplayMemberPath="HallId" 
