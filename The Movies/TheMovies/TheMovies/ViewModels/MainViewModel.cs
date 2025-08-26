@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using TheMovies.Commands;
 using TheMovies.Data.FileRepositories;
 using TheMovies.Models;
 
@@ -13,20 +14,20 @@ namespace TheMovies.ViewModels
     /// <remarks>This view model provides collections of movies and genres for display, bindings for user
     /// input fields,  and commands for adding and removing movies. It implements <see cref="INotifyPropertyChanged"/>
     /// to  support data binding and notify the UI of property changes.</remarks>
-    public class MainViewModel : INotifyPropertyChanged
+    internal class MainViewModel : ViewModelBase
     {
         private MovieFileRepository _movieRepo;
         // Lister til visning.
         public ObservableCollection<Movie> Movies => _movieRepo.Items;
         public ObservableCollection<Genre> Genres { get; set; }
 
-        // Bindings til inputfelter
-        //private string _movieName = string.Empty; // Initialized to avoid CS8618
-        //public string MovieName
-        //{
-        //    get => _movieName;
-        //    set { _movieName = value; OnPropertyChanged(); }
-        //}
+        //Bindings til inputfelter
+        private string _movieName = string.Empty; // Initialized to avoid CS8618
+        public string MovieName
+        {
+            get => _movieName;
+            set { _movieName = value; OnPropertyChanged(); }
+        }
 
         private int _duration;
         public int Duration
@@ -118,11 +119,5 @@ namespace TheMovies.ViewModels
         //        MessageBox.Show($"{StatusMessage}");
         //    }
         //}
-
-        public event PropertyChangedEventHandler? PropertyChanged; // Nullable to avoid CS8618
-        protected void OnPropertyChanged([CallerMemberName] string? name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
     }
 }

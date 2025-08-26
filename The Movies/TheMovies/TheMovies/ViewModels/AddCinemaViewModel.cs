@@ -11,7 +11,7 @@ using TheMovies.Models;
 namespace TheMovies.ViewModels
 {
 
-    internal class AddCinemaViewModel : INotifyPropertyChanged
+    internal class AddCinemaViewModel : ViewModelBase
     {
         private readonly CinemaFileRepository _cinemaRepo;
         #region Lister til visning
@@ -87,12 +87,6 @@ namespace TheMovies.ViewModels
                 MessageBox.Show($"{StatusMessage}");
             }
         }
-
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string PropertyName = null) =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
-        #endregion
 
     }
 }
