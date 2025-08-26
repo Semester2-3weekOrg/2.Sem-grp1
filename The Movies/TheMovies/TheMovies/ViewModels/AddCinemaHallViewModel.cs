@@ -1,6 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 using TheMovies.Commands;
@@ -9,7 +7,7 @@ using TheMovies.Models;
 
 namespace TheMovies.ViewModels
 {
-    internal class AddCinemaHallViewModel : INotifyPropertyChanged
+    internal class AddCinemaHallViewModel : ViewModelBase
     {
         // Repositories
         private readonly CinemaHallFileRepository _hallRepo;
@@ -139,10 +137,5 @@ namespace TheMovies.ViewModels
             // Keep SelectedCinema to allow adding multiple halls to the same cinema
         }
 
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string? name = null) =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        #endregion
     }
 }

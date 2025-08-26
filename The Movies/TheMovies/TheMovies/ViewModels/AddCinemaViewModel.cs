@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 using TheMovies.Commands;
@@ -11,7 +7,7 @@ using TheMovies.Models;
 
 namespace TheMovies.ViewModels
 {
-    internal class AddCinemaViewModel : INotifyPropertyChanged
+    internal class AddCinemaViewModel : ViewModelBase
     {
         private readonly CinemaFileRepository _cinemaRepo;
 
@@ -106,9 +102,5 @@ namespace TheMovies.ViewModels
             if (SelectedCinemaHall != null)
                 CinemaHalls.Remove(SelectedCinemaHall);
         }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string PropertyName = null) =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
     }
 }
