@@ -12,6 +12,33 @@ namespace TheMovies.Models
         public string Instructor { get; set; }
         public DateOnly? PremiereDate { get; set; }
 
+        ////Propfull
+        //private int myVar;
+
+        //public int MyProperty
+        //{
+        //    get { return myVar; }
+        //    set { myVar = value; }
+        //}
+        //private string Id;
+
+        //public string MyProperty
+        //{
+        //    get { return Id; }
+        //    set { Id = value; }
+        //}
+
+
+        ////prop
+        //public int MyProperty1 { get; set; }
+
+        ////ctor
+        //public Movie()
+        //{
+
+        //}
+
+
         //Overriding ToString method for better readability in UI
         public override string ToString()
         {

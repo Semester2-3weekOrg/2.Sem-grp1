@@ -1,6 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
@@ -10,7 +8,7 @@ using TheMovies.Models;
 
 namespace TheMovies.ViewModels
 {
-    internal class AddMovieViewModel : INotifyPropertyChanged
+    internal class AddMovieViewModel : ViewModelBase
     {
         private readonly MovieFileRepository _movieRepo;
         #region Lister til visning
@@ -184,12 +182,5 @@ namespace TheMovies.ViewModels
 
 
         #endregion
-
-
-        public event PropertyChangedEventHandler? PropertyChanged; // Nullable to avoid CS8618
-        protected void OnPropertyChanged([CallerMemberName] string? name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
     }
 }

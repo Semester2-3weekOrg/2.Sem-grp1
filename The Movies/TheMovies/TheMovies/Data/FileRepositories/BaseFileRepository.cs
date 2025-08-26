@@ -29,7 +29,7 @@ namespace TheMovies.Data.FileRepositories
 
         public List<T> GetAll()
         {
-            throw new NotImplementedException();
+            return _items.ToList();
         }
 
         public void SaveAll()
