@@ -34,6 +34,8 @@
         {
             HallId = $"{HallNumber}{CinemaInitials}";
         }
+
+        public int Seats { get; set; }
         public List<MovieShow> Shows { get; set; } = new();
     }
 }
