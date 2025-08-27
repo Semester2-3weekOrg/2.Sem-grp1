@@ -34,9 +34,9 @@
                   Margin="0,0,0,5"/>
                 <TextBlock Text="Movie title: " 
                    Margin="0,5,0,5"/>
-                <ComboBox ItemsSource="{Binding Cinemas}"
+                <ComboBox ItemsSource="{Binding Movies}"
                   HorizontalAlignment="Left"
-                  SelectedItem="{Binding SelectedCinema, Mode=TwoWay}"
+                  SelectedItem="{Binding SelectedMovie, Mode=TwoWay}"
                   Width="545" 
                   Margin="0,0,0,5"/>
                 <TextBlock Text="Date: " 
