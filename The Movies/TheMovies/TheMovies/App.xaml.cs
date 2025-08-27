@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using TheMovies.Data.FileRepositories;
+using TheMovies.Helpers;
+using TheMovies.Models;
 
 
 namespace TheMovies

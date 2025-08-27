@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
@@ -23,12 +24,10 @@ namespace TheMovies.ViewModels
         #region Inputfelter
         private string _cinemaName = string.Empty;
         public string CinemaName
-
         {
             get => _cinemaName;
             set { _cinemaName = value; OnPropertyChanged(); }
         }
-
         private string _cinemaInitials = string.Empty;
         public string CinemaInitials
         {
@@ -54,7 +53,6 @@ namespace TheMovies.ViewModels
         #endregion
 
         public AddCinemaViewModel()
-
         {
             _cinemaRepo = new CinemaFileRepository();
 
@@ -76,6 +74,8 @@ namespace TheMovies.ViewModels
 
                 _cinemaRepo.Add(newCinema);
                 StatusMessage = $"{newCinema.CinemaName}({newCinema.CinemaInitials}) successfully added!";
+                Console.Write(StatusMessage + "Console WriteLine");
+                Debug.Write(StatusMessage + "Debugger");
                 MessageBox.Show($"{StatusMessage}");
                 //Nulstil felter
                 CinemaName = string.Empty;
