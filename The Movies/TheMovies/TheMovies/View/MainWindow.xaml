@@ -44,6 +44,7 @@
                         MinWidth="150" MinHeight="50"
                         Margin="0,0,0,5"/>
                 <Button Content="Book"
+                        Tag="View/AddBookingView.xaml"
                         Click="NavigateButton_Click"
                         MinWidth="150" MinHeight="50"
                         Margin="0,5,0,5"/>

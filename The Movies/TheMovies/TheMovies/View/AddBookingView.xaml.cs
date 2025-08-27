@@ -24,5 +24,10 @@ namespace TheMovies.View
         {
             InitializeComponent();
         }
+
+        private void CalendarButton_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
