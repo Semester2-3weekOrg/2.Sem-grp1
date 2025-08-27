@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TheMovies.ViewModels;
 
 namespace TheMovies.View
 {
@@ -23,6 +24,7 @@ namespace TheMovies.View
         public AddCinemaHallView()
         {
             InitializeComponent();
+            DataContext = new AddCinemaHallViewModel();
         }
     }
 }
