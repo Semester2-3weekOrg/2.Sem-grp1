@@ -5,7 +5,7 @@ namespace TheMovies.Models
 {
     public class Genre
     {
-        public int Id { get; set; } // Unique identifier for the genre
-        public required string Name { get; set; } // Name of the genre, required to ensure every genre has a name
+        public int Id { get; set; }
+        public required string Name { get; set; }
     }
 }

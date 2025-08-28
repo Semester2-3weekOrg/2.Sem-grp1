@@ -119,5 +119,23 @@ namespace TheMovies.ViewModels
         //        MessageBox.Show($"{StatusMessage}");
         //    }
         //}
+
+        public event PropertyChangedEventHandler? PropertyChanged; // Nullable to avoid CS8618
+        protected void OnPropertyChanged([CallerMemberName] string? name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged; // Nullable to avoid CS8618
+        protected void OnPropertyChanged([CallerMemberName] string? name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged; // Nullable to avoid CS8618
+        protected void OnPropertyChanged([CallerMemberName] string? name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
     }
 }
