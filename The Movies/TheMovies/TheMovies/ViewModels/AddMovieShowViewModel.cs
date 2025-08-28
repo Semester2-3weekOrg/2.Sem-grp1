@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 using TheMovies.Commands;
 using TheMovies.Data.FileRepositories;
@@ -33,7 +34,7 @@ namespace TheMovies.ViewModels
             _cinemaRepo = new CinemaFileRepository();
 
             //AddMovieShowCommand = new RelayCommand(_ => AddMovieShow());
-            SaveAllCommand = new RelayCommand(_ => _movieRepo.SaveAll());
+            SaveAllCommand = new RelayCommand(_ => _movieShowRepo.SaveAll());
         }
 
         #region Input
@@ -108,40 +109,33 @@ namespace TheMovies.ViewModels
 
         #region Commands
         public ICommand AddMovieShowCommand { get; }
-
-        public ICommand SaveAllCommand { get; }
         #endregion
 
+        public ICommand SaveAllCommand { get; }
+        public void AddMovieShow()
+        {
+            if (SelectedCinema != null && SelectedCinemaHalls != null && SelectedMovie != null && !string.IsNullOrWhiteSpace(PlayTime.ToString()) && !string.IsNullOrWhiteSpace(PlayDate.ToString()))
+            {
+                var commercialMinutes = 15;
+                var movieLength = SelectedMovie.Length ?? 0;
+                var duration = TimeSpan.FromMinutes(movieLength + commercialMinutes);
 
-        //private void AddMovie()
-        //{
-        //    if (!string.IsNullOrWhiteSpace(MovieName) && SelectedGenre != null && Duration > 0)
-        //    {
-
-        //        var newMovie = new Movie()
-        //        {
-        //            Id = _movieRepo.Items.Count + 1,
-        //            Title = MovieName,
-        //            Length = Duration,
-        //            Genre = SelectedGenre,
-        //            Instructor = Instructor,
-        //            PremiereDate = PremiereDate
-        //        };
-        //        _movieRepo.Add(newMovie);
-        //        StatusMessage = $"{newMovie.Title} successfully added!";
-        //        MessageBox.Show($"{StatusMessage}");
-        //        MovieName = string.Empty;
-        //        Duration = 0;
-        //        SelectedGenre = null;
-        //        Instructor = string.Empty;
-        //        PremiereDate = DateOnly.MinValue;
-        //    }
-        //    else
-        //    {
-        //        StatusMessage = "Please fill out all fields!";
-        //        MessageBox.Show($"{StatusMessage}");
-        //    }
-        //}
+                var newMovieShow = new MovieShow()
+                {
+                    Id = _movieShowRepo.Items.Count + 1,
+                    MovieTitle = SelectedMovie.Title,
+                    PlayTime = PlayTime,
+                    PlayDate = PlayDate,
+                    Cinema = SelectedCinema,
+                    CinemaHall = SelectedHall,
+                    Commercial = TimeSpan.FromMinutes(commercialMinutes),
+                    Duration = duration,
+                };
+                _movieShowRepo.Add(newMovieShow);
+                StatusMessage = "Successfully added!";
+                MessageBox.Show($"{StatusMessage}");
+            }
+        }
 
 
         public event PropertyChangedEventHandler? PropertyChanged; // Nullable to avoid CS8618

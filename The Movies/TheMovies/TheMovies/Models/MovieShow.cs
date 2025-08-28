@@ -6,6 +6,8 @@
         public string MovieTitle { get; set; }
         public TimeOnly PlayTime { get; set; }
         public DateOnly PlayDate { get; set; }
+        public Cinema Cinema { get; set; }
+        public CinemaHall CinemaHall { get; set; }
         public TimeSpan Commercial { get; set; }
         public TimeSpan Duration { get; set; }
 

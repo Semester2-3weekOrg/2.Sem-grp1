@@ -12,8 +12,4 @@
     <Folder Include="Data\SavedFiles\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.7.25104.5739" />
-  </ItemGroup>
-
 </Project>
