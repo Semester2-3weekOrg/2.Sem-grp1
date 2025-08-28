@@ -24,5 +24,10 @@ namespace TheMovies.View
         {
             InitializeComponent();
         }
+
+        private void ComboBox_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

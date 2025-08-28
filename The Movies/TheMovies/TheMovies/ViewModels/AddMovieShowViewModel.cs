@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 using TheMovies.Commands;
 using TheMovies.Data.FileRepositories;
@@ -33,7 +34,7 @@ namespace TheMovies.ViewModels
             _cinemaRepo = new CinemaFileRepository();
 
             //AddMovieShowCommand = new RelayCommand(_ => AddMovieShow());
-            SaveAllCommand = new RelayCommand(_ => _movieRepo.SaveAll());
+            SaveAllCommand = new RelayCommand(_ => _movieShowRepo.SaveAll());
         }
 
         #region Input
@@ -108,9 +109,16 @@ namespace TheMovies.ViewModels
 
         #region Commands
         public ICommand AddMovieShowCommand { get; }
+        #endregion
 
         public ICommand SaveAllCommand { get; }
-        #endregion
+        public void AddMovieShow()
+        {
+            if (SelectedCinema != null && SelectedCinemaHalls != null && SelectedMovie != null && !string.IsNullOrWhiteSpace(PlayTime.ToString()) && !string.IsNullOrWhiteSpace(PlayDate.ToString()))
+            {
+                var commercialMinutes = 15;
+                var movieLength = SelectedMovie.Length ?? 0;
+                var duration = TimeSpan.FromMinutes(movieLength + commercialMinutes);
 
     }
 }
