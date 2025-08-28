@@ -7,12 +7,7 @@ using TheMovies.Models;
 
 namespace TheMovies.ViewModels
 {
-    /// <summary>
-    /// Represents the main view model for managing movies and genres in a user interface.
-    /// </summary>
-    /// <remarks>This view model provides collections of movies and genres for display, bindings for user
-    /// input fields,  and commands for adding and removing movies. It implements <see cref="INotifyPropertyChanged"/>
-    /// to  support data binding and notify the UI of property changes.</remarks>
+
     public class MainViewModel : INotifyPropertyChanged
     {
         private MovieFileRepository _movieRepo;
@@ -21,12 +16,6 @@ namespace TheMovies.ViewModels
         public ObservableCollection<Genre> Genres { get; set; }
 
         // Bindings til inputfelter
-        //private string _movieName = string.Empty; // Initialized to avoid CS8618
-        //public string MovieName
-        //{
-        //    get => _movieName;
-        //    set { _movieName = value; OnPropertyChanged(); }
-        //}
 
         private int _duration;
         public int Duration
@@ -101,23 +90,6 @@ namespace TheMovies.ViewModels
             //RemoveMovieCommand = new RelayCommand(_ => RemoveMovie());
         }
 
-
-
-        //private void RemoveMovie()
-        //{
-        //    var movieToRemove = Movies.FirstOrDefault(m => m.Title == MovieName);
-        //    if (movieToRemove != null)
-        //    {
-        //        Movies.Remove(movieToRemove);
-        //        StatusMessage = "Successfully removed!";
-        //        MessageBox.Show($"{StatusMessage}");
-        //    }
-        //    else
-        //    {
-        //        StatusMessage = "Movie not found!";
-        //        MessageBox.Show($"{StatusMessage}");
-        //    }
-        //}
 
         public event PropertyChangedEventHandler? PropertyChanged; // Nullable to avoid CS8618
         protected void OnPropertyChanged([CallerMemberName] string? name = null)

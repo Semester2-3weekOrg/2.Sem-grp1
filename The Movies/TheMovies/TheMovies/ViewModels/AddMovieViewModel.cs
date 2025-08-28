@@ -73,8 +73,6 @@ namespace TheMovies.ViewModels
 
         public AddMovieViewModel()
         {
-            //_movieRepo = new MovieFileRepository();
-            //RemoveMovieCommand = new RelayCommand(movie => RemoveMovie(movie as Movie), movie => movie is Movie);
 
             // Create the repository
             _movieRepo = new MovieFileRepository();

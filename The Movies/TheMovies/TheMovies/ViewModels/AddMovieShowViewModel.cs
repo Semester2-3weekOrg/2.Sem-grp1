@@ -113,37 +113,6 @@ namespace TheMovies.ViewModels
         #endregion
 
 
-        //private void AddMovie()
-        //{
-        //    if (!string.IsNullOrWhiteSpace(MovieName) && SelectedGenre != null && Duration > 0)
-        //    {
-
-        //        var newMovie = new Movie()
-        //        {
-        //            Id = _movieRepo.Items.Count + 1,
-        //            Title = MovieName,
-        //            Length = Duration,
-        //            Genre = SelectedGenre,
-        //            Instructor = Instructor,
-        //            PremiereDate = PremiereDate
-        //        };
-        //        _movieRepo.Add(newMovie);
-        //        StatusMessage = $"{newMovie.Title} successfully added!";
-        //        MessageBox.Show($"{StatusMessage}");
-        //        MovieName = string.Empty;
-        //        Duration = 0;
-        //        SelectedGenre = null;
-        //        Instructor = string.Empty;
-        //        PremiereDate = DateOnly.MinValue;
-        //    }
-        //    else
-        //    {
-        //        StatusMessage = "Please fill out all fields!";
-        //        MessageBox.Show($"{StatusMessage}");
-        //    }
-        //}
-
-
         public event PropertyChangedEventHandler? PropertyChanged; // Nullable to avoid CS8618
         protected void OnPropertyChanged([CallerMemberName] string? name = null)
         {
