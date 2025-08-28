@@ -1,11 +1,9 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using TheMovies.Models;
 
 namespace TheMovies.ViewModels
 {
-    class AddBookingViewModel : INotifyPropertyChanged
+    class AddBookingViewModel : ViewModelBase
     {
         private MovieShow _selectedMovieShow;
 
@@ -69,9 +67,5 @@ namespace TheMovies.ViewModels
             );
         }
 
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged([CallerMemberName] string name = null)
-            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 }
