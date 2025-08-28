@@ -1,7 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows;
 using System.Windows.Input;
 using TheMovies.Commands;
 using TheMovies.Data.FileRepositories;
@@ -120,5 +117,7 @@ namespace TheMovies.ViewModels
                 var movieLength = SelectedMovie.Length ?? 0;
                 var duration = TimeSpan.FromMinutes(movieLength + commercialMinutes);
 
+            }
+        }
     }
 }

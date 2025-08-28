@@ -1,8 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using TheMovies.Commands;
 using TheMovies.Data.FileRepositories;
 using TheMovies.Models;
 
@@ -102,40 +100,5 @@ namespace TheMovies.ViewModels
             //RemoveMovieCommand = new RelayCommand(_ => RemoveMovie());
         }
 
-
-
-        //private void RemoveMovie()
-        //{
-        //    var movieToRemove = Movies.FirstOrDefault(m => m.Title == MovieName);
-        //    if (movieToRemove != null)
-        //    {
-        //        Movies.Remove(movieToRemove);
-        //        StatusMessage = "Successfully removed!";
-        //        MessageBox.Show($"{StatusMessage}");
-        //    }
-        //    else
-        //    {
-        //        StatusMessage = "Movie not found!";
-        //        MessageBox.Show($"{StatusMessage}");
-        //    }
-        //}
-
-        public event PropertyChangedEventHandler? PropertyChanged; // Nullable to avoid CS8618
-        protected void OnPropertyChanged([CallerMemberName] string? name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged; // Nullable to avoid CS8618
-        protected void OnPropertyChanged([CallerMemberName] string? name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged; // Nullable to avoid CS8618
-        protected void OnPropertyChanged([CallerMemberName] string? name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
     }
 }
