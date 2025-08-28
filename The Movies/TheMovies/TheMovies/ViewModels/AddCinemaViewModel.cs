@@ -104,5 +104,10 @@ namespace TheMovies.ViewModels
                 CinemaHalls.Remove(SelectedCinemaHall);
         }
 
+        private void RemoveHall()
+        {
+            if (SelectedCinemaHall != null)
+                CinemaHalls.Remove(SelectedCinemaHall);
+        }
     }
 }
